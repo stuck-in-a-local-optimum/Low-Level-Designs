@@ -14,9 +14,9 @@ public class Base62Encoder {
 
         while(base10Num > 0 ){
             int remainder = (int) base10Num % 62;
-            int divisor = (int) base10Num / 62;
+            int quotient = (int) base10Num / 62;
             sb.append(BASE62.charAt(remainder));
-            base10Num = divisor;
+            base10Num = quotient;
 
         }
         return sb.reverse().toString();
