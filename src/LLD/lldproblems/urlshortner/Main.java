@@ -39,7 +39,7 @@ public class Main {
     *
     * example: ID = 1000
     *       1000/62 = 16 , 1000 % 62 = 8  --> 168
-    *    "168" --> g8 in base62
+    *      "168" --> g8 in base62
     * */
 
     public static void main(String[] args) {
