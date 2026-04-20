@@ -1,166 +1,146 @@
-# 🎯 Design Patterns Implementation in Java
+# Low-Level Design — Patterns, Problems & Demos
 
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.oracle.com/java/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Design Patterns](https://img.shields.io/badge/Design_Patterns-Gang_of_Four-blue?style=for-the-badge)](https://en.wikipedia.org/wiki/Design_Patterns)
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)
 
-A comprehensive collection of various Design Patterns implemented in Java, demonstrating clean code principles and object-oriented design best practices.
+Java implementations of common **design patterns**, small **low-level design (LLD) exercises**, and a **Python voice spelling demo** (`spellbee_voice_bot`). Source roots under `src/`; IntelliJ module file: `system-design.iml`.
 
-## 📋 Table of Contents
+## Table of contents
 
-- [Overview](#-overview)
-- [Design Patterns Implemented](#-design-patterns-implemented)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-- [Design Pattern Details](#-design-pattern-details)
-- [Running the Examples](#-running-the-examples)
-- [Contributing](#-contributing)
+- [Overview](#overview)
+- [Repository layout](#repository-layout)
+- [Design patterns](#design-patterns)
+- [LLD problem solutions](#lld-problem-solutions)
+- [Spell Bee voice bot (Python)](#spell-bee-voice-bot-python)
+- [Build and run (Java)](#build-and-run-java)
+- [Contributing](#contributing)
+- [Author](#author)
 
-## 🌟 Overview
+## Overview
 
-This repository contains implementations of classical design patterns that solve common software design problems. Each pattern is implemented with:
+- **Design patterns** — Creational, structural, and behavioral examples with `Main` (or `main`) drivers under `src/LLD/designpatterns/`.
+- **LLD problems** — Self-contained mini-designs (tic-tac-toe, vending machine, URL shortener) under `src/LLD/lldproblems/`.
+- **Spell Bee voice bot** — Pipecat-based voice game; see the [package README](src/LLD/spellbee_voice_bot/README.md).
 
-- ✅ **Clean, readable code** with proper documentation
-- ✅ **Real-world examples** that demonstrate practical usage
-- ✅ **Comprehensive demos** showing pattern behavior
-- ✅ **Best practices** following SOLID principles
-
-## 🎨 Design Patterns Implemented
-
-| Pattern | Type | Status | Description |
-|---------|------|--------|-------------|
-| **Strategy** | Behavioral | ✅ Live | Payment processing with interchangeable algorithms |
-| **Factory** | Creational | ✅ Live | Shape creation with runtime type selection |
-| **Abstract Factory** | Creational | ✅ Live | Vehicle manufacturing families (BMW, Tata) |
-| **Builder** | Creational | 📝 Available | Burger meal construction with optional components |
-| **Decorator** | Structural | 📝 Available | Pizza customization with dynamic toppings |
-| **Observer** | Behavioral | 📝 Available | iPhone stock notification system |
-| **Chain of Responsibility** | Behavioral | 📝 Available | Logger chain with different levels |
-| **Null Object** | Behavioral | 📝 Available | Animal handling without null checks |
-| **State + Strategy** | Behavioral | 📝 Available | Vending machine with multiple payment methods |
-
-## 📁 Project Structure
+## Repository layout
 
 ```
-Design-Patterns/
+Low-Level-Designs/
 ├── src/
-│   └── LLD/
-│       └── designpatterns/
-│           ├── strategy/           # ✅ Strategy Pattern (Live)
-│           │   ├── PaymentStrategy.java
-│           │   ├── CreditCardStrategy.java
-│           │   ├── UpIPaymentStrategy.java
-│           │   ├── ShoppingCart.java
-│           │   └── Main.java
-│           ├── factory/            # ✅ Factory Pattern (Live)
-│           │   ├── Shape.java
-│           │   ├── Circle.java, Rectangle.java, Square.java
-│           │   ├── ShapeFactory.java
-│           │   └── main.java
-│           ├── abstractfactory/    # ✅ Abstract Factory Pattern (Live)
-│           │   ├── VehicleFactory.java
-│           │   ├── concretefactories/
-│           │   ├── concreteproducts/
-│           │   └── products/
-│           ├── builderpattern/     # 📝 Builder Pattern
-│           ├── Decorator/          # 📝 Decorator Pattern
-│           ├── observer/           # 📝 Observer Pattern
-│           ├── cor/                # 📝 Chain of Responsibility
-│           ├── nullobjectpattern/  # 📝 Null Object Pattern
-│           └── vendingmachine/     # 📝 State + Strategy Pattern
-├── README.md
-└── .gitignore
+│   ├── LLD/
+│   │   ├── designpatterns/          # Pattern demos (strategy, factory, …)
+│   │   ├── lldproblems/             # LLD exercises
+│   │   │   ├── tictactoe/
+│   │   │   ├── vendingmachine/      # State + payment strategies
+│   │   │   └── urlshortner/         # Short URLs, Base62, in-memory store
+│   │   ├── spellbee_voice_bot/      # Python: voice spelling (Pipecat, etc.)
+│   │   └── Main.java
+│   └── main.java
+├── system-design.iml                # IntelliJ module (source root: src/)
+└── README.md
 ```
 
-## 🚀 Getting Started
+## Design patterns
 
-### Prerequisites
+| Pattern | Category | Package / folder |
+|--------|----------|-------------------|
+| Strategy | Behavioral | `designpatterns/strategy/` |
+| Factory | Creational | `designpatterns/factory/` |
+| Abstract Factory | Creational | `designpatterns/abstractfactory/` |
+| Builder | Creational | `designpatterns/builderpattern/` |
+| Decorator | Structural | `designpatterns/Decorator/` |
+| Observer | Behavioral | `designpatterns/observer/` |
+| Chain of Responsibility | Behavioral | `designpatterns/cor/` |
+| Null Object | Behavioral | `designpatterns/nullobjectpattern/` |
+| Adapter | Structural | `designpatterns/adapterpattern/` |
+| Facade | Structural | `designpatterns/facadepattern/` |
+| Proxy (virtual / protection / remote) | Structural | `designpatterns/proxypattern/` |
 
-- **Java 8+** installed on your system
-- **Git** for cloning the repository
+Entry points are typically `Main.java` or `main.java` inside each package; compile with `src` on the classpath and run using the fully qualified class name.
 
-### Installation
+## LLD problem solutions
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/stuck-in-a-local-optimum/Design-Patterns.git
-   cd Design-Patterns
-   ```
+| Topic | Location | Notes |
+|-------|----------|--------|
+| Tic-tac-toe | `lldproblems/tictactoe/` | Board, players, game loop (`main.java`) |
+| Vending machine | `lldproblems/vendingmachine/` | State pattern + payment strategies |
+| URL shortener | `lldproblems/urlshortner/` | Encode/decode, repository abstraction |
 
-2. **Compile the code**
-   ```bash
-   javac -cp src src/LLD/designpatterns/strategy/Main.java
-   ```
+## Spell Bee voice bot (Python)
 
-3. **Run the example**
-   ```bash
-   java -cp src LLD.designpatterns.strategy.Main
-   ```
+Voice spelling game using Pipecat, Deepgram, Gemini, and Cartesia. **Setup, env vars, and run instructions** are documented here:
 
+**[src/LLD/spellbee_voice_bot/README.md](src/LLD/spellbee_voice_bot/README.md)**
 
-## ▶️ Running the Examples
-
-Each design pattern includes a `Main.java` file with comprehensive demonstrations:
+Short version:
 
 ```bash
-# Strategy Pattern
+cd src/LLD/spellbee_voice_bot
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp env.example .env   # then edit with your API keys
+python server.py
+```
+
+## Build and run (Java)
+
+**Prerequisites:** `javac` / `java` on your `PATH`. Most modules work with **Java 8+**; **tic-tac-toe** uses newer APIs (e.g. `Stream.toList()`), so use **Java 17+** recommended for the whole tree.
+
+**Clone**
+
+```bash
+git clone https://github.com/stuck-in-a-local-optimum/Low-Level-Designs.git
+cd Low-Level-Designs
+```
+
+**Examples** (from repo root; classpath is `src`):
+
+```bash
+# Strategy
 javac -cp src src/LLD/designpatterns/strategy/Main.java
 java -cp src LLD.designpatterns.strategy.Main
 
-# Factory Pattern
+# Factory (class file is main)
 javac -cp src src/LLD/designpatterns/factory/main.java
 java -cp src LLD.designpatterns.factory.main
 
-# Abstract Factory Pattern
+# Abstract factory
 javac -cp src src/LLD/designpatterns/abstractfactory/main.java
 java -cp src LLD.designpatterns.abstractfactory.main
+
+# Vending machine (LLD)
+javac -cp src src/LLD/lldproblems/vendingmachine/Main.java
+java -cp src LLD.lldproblems.vendingmachine.Main
+
+# URL shortener
+javac -cp src src/LLD/lldproblems/urlshortner/Main.java
+java -cp src LLD.lldproblems.urlshortner.Main
+
+# Tic-tac-toe (entry class name is lowercase `main`)
+javac -cp src src/LLD/lldproblems/tictactoe/main.java
+java -cp src LLD.lldproblems.tictactoe.main
 ```
 
-## 🎯 Learning Objectives
+For packages with many files, compile all sources in the folder, for example:
 
-By exploring these implementations, you'll learn:
+```bash
+javac -cp src $(find src/LLD/designpatterns/proxypattern -name "*.java")
+java -cp src LLD.designpatterns.proxypattern.Main
+```
 
-- **When to use** each design pattern
-- **How to implement** patterns correctly in Java
-- **Real-world applications** of design patterns
-- **Best practices** for object-oriented design
-- **SOLID principles** in action
+Adjust `find` usage on Windows (PowerShell) or compile from your IDE using `src` as the source root.
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Here's how you can help:
+1. Fork the repository  
+2. Create a branch (`git checkout -b feature/your-change`)  
+3. Commit with clear messages  
+4. Open a pull request  
 
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/new-pattern`)
-3. **Commit** your changes (`git commit -m 'Add Singleton pattern'`)
-4. **Push** to the branch (`git push origin feature/new-pattern`)
-5. **Open** a Pull Request
+Match existing package naming and style; keep demos runnable from the `src` classpath.
 
-### Contribution Guidelines
+## Author
 
-- Follow existing code style and structure
-- Include comprehensive documentation
-- Add meaningful examples and demos
-- Write clean, readable code
-- Test your implementations thoroughly
-
-## 💡 About This Implementation
-
-These design patterns were **implemented independently** as learning exercises, 
-demonstrating practical understanding of object-oriented design principles.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
-
-**stuck-in-a-local-optimum**
-- GitHub: [@stuck-in-a-local-optimum](https://github.com/stuck-in-a-local-optimum)
-- Email: ajeet19010@iiitd.ac.in
-
----
-
-⭐ **Star this repository** if you find it helpful for learning design patterns!
-
-🚀 **Watch this repository** to stay updated with new pattern implementations! 
+**stuck-in-a-local-optimum**  
+GitHub: [@stuck-in-a-local-optimum](https://github.com/stuck-in-a-local-optimum)
