@@ -1,4 +1,4 @@
-# Low-Level Design — Patterns, Problems & Demos
+# Low-Level Design — Design Patterns & LLD Problems
 
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.oracle.com/java/)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
