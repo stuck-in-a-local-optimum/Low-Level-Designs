@@ -20,7 +20,7 @@ Java implementations of common **design patterns**, small **low-level design (LL
 ## Overview
 
 - **Design patterns** — Creational, structural, and behavioral examples with `Main` (or `main`) drivers under `src/LLD/designpatterns/`.
-- **LLD problems** — Self-contained mini-designs (tic-tac-toe, vending machine, URL shortener) under `src/LLD/lldproblems/`.
+- **LLD problems** — Under `src/LLD/lldproblems/`. **On the default branch today:** URL shortener only. Tic-tac-toe and vending machine exist **locally** but are **not pushed** yet (a fresh clone only gets `urlshortner` under `lldproblems/` until those are committed and pushed).
 - **Spell Bee voice bot** — Pipecat-based voice game; see the [package README](src/LLD/spellbee_voice_bot/README.md).
 
 ## Repository layout
@@ -31,9 +31,9 @@ Low-Level-Designs/
 │   ├── LLD/
 │   │   ├── designpatterns/          # Pattern demos (strategy, factory, …)
 │   │   ├── lldproblems/             # LLD exercises
-│   │   │   ├── tictactoe/
-│   │   │   ├── vendingmachine/      # State + payment strategies
-│   │   │   └── urlshortner/         # Short URLs, Base62, in-memory store
+│   │   │   ├── urlshortner/         # On remote: short URLs, Base62, in-memory store
+│   │   │   ├── tictactoe/           # Local only (not pushed yet)
+│   │   │   └── vendingmachine/      # Local only (not pushed yet); state + payment strategies
 │   │   ├── spellbee_voice_bot/      # Python: voice spelling (Pipecat, etc.)
 │   │   └── Main.java
 │   └── main.java
@@ -61,11 +61,11 @@ Entry points are typically `Main.java` or `main.java` inside each package; compi
 
 ## LLD problem solutions
 
-| Topic | Location | Notes |
-|-------|----------|--------|
-| Tic-tac-toe | `lldproblems/tictactoe/` | Board, players, game loop (`main.java`) |
-| Vending machine | `lldproblems/vendingmachine/` | State pattern + payment strategies |
-| URL shortener | `lldproblems/urlshortner/` | Encode/decode, repository abstraction |
+| Topic | Location | On default branch |
+|-------|----------|-------------------|
+| URL shortener | `lldproblems/urlshortner/` | Yes |
+| Tic-tac-toe | `lldproblems/tictactoe/` | No (local only for now) |
+| Vending machine | `lldproblems/vendingmachine/` | No (local only for now) |
 
 ## Spell Bee voice bot (Python)
 
@@ -85,7 +85,7 @@ python server.py
 
 ## Build and run (Java)
 
-**Prerequisites:** `javac` / `java` on your `PATH`. Most modules work with **Java 8+**; **tic-tac-toe** uses newer APIs (e.g. `Stream.toList()`), so use **Java 17+** recommended for the whole tree.
+**Prerequisites:** `javac` / `java` on your `PATH`. Most modules work with **Java 8+**. If you build **tic-tac-toe** locally (not on remote yet), prefer **Java 17+** (uses APIs such as `Stream.toList()`).
 
 **Clone**
 
@@ -109,13 +109,17 @@ java -cp src LLD.designpatterns.factory.main
 javac -cp src src/LLD/designpatterns/abstractfactory/main.java
 java -cp src LLD.designpatterns.abstractfactory.main
 
-# Vending machine (LLD)
-javac -cp src src/LLD/lldproblems/vendingmachine/Main.java
-java -cp src LLD.lldproblems.vendingmachine.Main
-
-# URL shortener
+# URL shortener (LLD — on default branch)
 javac -cp src src/LLD/lldproblems/urlshortner/Main.java
 java -cp src LLD.lldproblems.urlshortner.Main
+```
+
+**Tic-tac-toe and vending machine** (folders not on the remote yet; only if you have them locally):
+
+```bash
+# Vending machine
+javac -cp src src/LLD/lldproblems/vendingmachine/Main.java
+java -cp src LLD.lldproblems.vendingmachine.Main
 
 # Tic-tac-toe (entry class name is lowercase `main`)
 javac -cp src src/LLD/lldproblems/tictactoe/main.java
