@@ -4,14 +4,14 @@
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Design Patterns](https://img.shields.io/badge/Design_Patterns-Gang_of_Four-blue?style=for-the-badge)](https://en.wikipedia.org/wiki/Design_Patterns)
 
-Java implementations of common **design patterns**, small **low-level design (LLD) exercises**, and a **Python voice spelling demo** (`spellbee_voice_bot`). Source roots under `src/`; IntelliJ module file: `system-design.iml`.
+Java implementations of common **design patterns**, a **URL shortener** LLD exercise, a small **hash map** demo, and a **Python voice spelling** sample (`spellbee_voice_bot`). Source lives under `src/`.
 
 ## Table of contents
 
 - [Overview](#overview)
 - [Repository layout](#repository-layout)
 - [Design patterns](#design-patterns)
-- [LLD problem solutions](#lld-problem-solutions)
+- [LLD problem](#lld-problem)
 - [Spell Bee voice bot (Python)](#spell-bee-voice-bot-python)
 - [Build and run (Java)](#build-and-run-java)
 - [Contributing](#contributing)
@@ -20,7 +20,8 @@ Java implementations of common **design patterns**, small **low-level design (LL
 ## Overview
 
 - **Design patterns** — Creational, structural, and behavioral examples with `Main` (or `main`) drivers under `src/LLD/designpatterns/`.
-- **LLD problems** — Under `src/LLD/lldproblems/`. **On the default branch today:** URL shortener only. Tic-tac-toe and vending machine exist **locally** but are **not pushed** yet (a fresh clone only gets `urlshortner` under `lldproblems/` until those are committed and pushed).
+- **LLD** — URL shortener under `src/LLD/lldproblems/urlshortner/`.
+- **Hash map** — Custom `MyHashMap` demo under `src/hashmap/`.
 - **Spell Bee voice bot** — Pipecat-based voice game; see the [package README](src/LLD/spellbee_voice_bot/README.md).
 
 ## Repository layout
@@ -29,15 +30,12 @@ Java implementations of common **design patterns**, small **low-level design (LL
 Low-Level-Designs/
 ├── src/
 │   ├── LLD/
-│   │   ├── designpatterns/          # Pattern demos (strategy, factory, …)
-│   │   ├── lldproblems/             # LLD exercises
-│   │   │   ├── urlshortner/         # On remote: short URLs, Base62, in-memory store
-│   │   │   ├── tictactoe/           # Local only (not pushed yet)
-│   │   │   └── vendingmachine/      # Local only (not pushed yet); state + payment strategies
-│   │   ├── spellbee_voice_bot/      # Python: voice spelling (Pipecat, etc.)
+│   │   ├── designpatterns/       # Pattern demos (strategy, factory, …)
+│   │   ├── lldproblems/
+│   │   │   └── urlshortner/      # Short URLs, Base62, in-memory store
+│   │   ├── spellbee_voice_bot/   # Python: voice spelling (Pipecat, etc.)
 │   │   └── Main.java
-│   └── main.java
-├── system-design.iml                # IntelliJ module (source root: src/)
+│   └── hashmap/                  # Custom hash map implementation
 └── README.md
 ```
 
@@ -48,24 +46,19 @@ Low-Level-Designs/
 | Strategy | Behavioral | `designpatterns/strategy/` |
 | Factory | Creational | `designpatterns/factory/` |
 | Abstract Factory | Creational | `designpatterns/abstractfactory/` |
-| Builder | Creational | `designpatterns/builderpattern/` |
 | Decorator | Structural | `designpatterns/Decorator/` |
 | Observer | Behavioral | `designpatterns/observer/` |
-| Chain of Responsibility | Behavioral | `designpatterns/cor/` |
-| Null Object | Behavioral | `designpatterns/nullobjectpattern/` |
 | Adapter | Structural | `designpatterns/adapterpattern/` |
 | Facade | Structural | `designpatterns/facadepattern/` |
 | Proxy (virtual / protection / remote) | Structural | `designpatterns/proxypattern/` |
 
 Entry points are typically `Main.java` or `main.java` inside each package; compile with `src` on the classpath and run using the fully qualified class name.
 
-## LLD problem solutions
+## LLD problem
 
-| Topic | Location | On default branch |
-|-------|----------|-------------------|
-| URL shortener | `lldproblems/urlshortner/` | Yes |
-| Tic-tac-toe | `lldproblems/tictactoe/` | No (local only for now) |
-| Vending machine | `lldproblems/vendingmachine/` | No (local only for now) |
+| Topic | Location | Notes |
+|-------|----------|--------|
+| URL shortener | `lldproblems/urlshortner/` | Encode/decode, repository abstraction |
 
 ## Spell Bee voice bot (Python)
 
@@ -85,7 +78,7 @@ python server.py
 
 ## Build and run (Java)
 
-**Prerequisites:** `javac` / `java` on your `PATH`. Most modules work with **Java 8+**. If you build **tic-tac-toe** locally (not on remote yet), prefer **Java 17+** (uses APIs such as `Stream.toList()`).
+**Prerequisites:** `javac` / `java` on your `PATH`; **Java 8+** is enough for the modules listed here.
 
 **Clone**
 
@@ -109,21 +102,13 @@ java -cp src LLD.designpatterns.factory.main
 javac -cp src src/LLD/designpatterns/abstractfactory/main.java
 java -cp src LLD.designpatterns.abstractfactory.main
 
-# URL shortener (LLD — on default branch)
+# URL shortener (LLD)
 javac -cp src src/LLD/lldproblems/urlshortner/Main.java
 java -cp src LLD.lldproblems.urlshortner.Main
-```
 
-**Tic-tac-toe and vending machine** (folders not on the remote yet; only if you have them locally):
-
-```bash
-# Vending machine
-javac -cp src src/LLD/lldproblems/vendingmachine/Main.java
-java -cp src LLD.lldproblems.vendingmachine.Main
-
-# Tic-tac-toe (entry class name is lowercase `main`)
-javac -cp src src/LLD/lldproblems/tictactoe/main.java
-java -cp src LLD.lldproblems.tictactoe.main
+# Custom hash map
+javac -cp src src/hashmap/Main.java
+java -cp src hashmap.Main
 ```
 
 For packages with many files, compile all sources in the folder, for example:
