@@ -58,25 +58,12 @@ Each pattern folder includes a runnable entry class (`Main` or `main`).
 
 ## LLD solutions
 
-| Topic | Location | What it covers |
-|-------|----------|----------------|
-| URL shortener | `lldproblems/urlshortner/` | Long URL → short key, Base62-style encoding, in-memory repository. |
-| Social network | `lldproblems/socialnetwork/` | Users, friend graph, posts, comments, likes, chronological friend news feed, in-app “notifications” on post / comment / like. |
+| Topic | Location | What it covers                                                                                                                       |
+|-------|----------|--------------------------------------------------------------------------------------------------------------------------------------|
+| URL shortener | `lldproblems/urlshortner/` | Long URL → short key, Base62-style encoding, in-memory repository.                                                                   |
+| Social network | `lldproblems/socialnetwork/` | User creation, friend connetions, posts, comments, likes, chronological friend news feed, notifications on post / comment / like. |
 
-### Social network (`lldproblems/socialnetwork/`)
 
-End-to-end API is exposed through **`SocialNetworkFacade`**: create users, add friends, create posts, comment, like, and **`getNewsFeed(userId)`** (friends’ posts, newest first).
-
-**Patterns used**
-
-| Pattern | Where |
-|--------|--------|
-| **Facade** | `SocialNetworkFacade` — single entry point over user, post, and feed services. |
-| **Observer** | `PostObserver` / `UserNotifier` — react to new posts, comments, and likes (demo notifications). |
-| **Strategy** | `NewsFeedGenerationStrategy` + `ChronologicalStrategy` — feed generation is pluggable (default: sort by time). |
-| **Singleton** | `UserRepository`, `PostRepository` — in-memory stores (`getInstance()`). |
-
-Run **`SocialNetworkDemo`** for a scripted walk-through of the flows above.
 
 ## Spell Bee voice bot (Python)
 
