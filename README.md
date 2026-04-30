@@ -4,25 +4,26 @@
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Design Patterns](https://img.shields.io/badge/Design_Patterns-Gang_of_Four-blue?style=for-the-badge)](https://en.wikipedia.org/wiki/Design_Patterns)
 
-Java implementations of common **design patterns**, a **URL shortener** LLD exercise, a small **hash map** demo, and a **Python voice spelling** sample (`spellbee_voice_bot`). Source lives under `src/`.
+Java implementations of common **design patterns**, **LLD exercises** (URL shortener, **social network**), a small **hash map** demo, and a **Python voice spelling** sample (`spellbee_voice_bot`). Source lives under `src/`.
 
 ## Table of contents
 
 - [Overview](#overview)
 - [Repository layout](#repository-layout)
 - [Design patterns](#design-patterns)
-- [LLD problem](#lld-problem)
+- [LLD solutions](#lld-solutions)
 - [Spell Bee voice bot (Python)](#spell-bee-voice-bot-python)
-- [Build and run (Java)](#build-and-run-java)
 - [Contributing](#contributing)
 - [Author](#author)
 
 ## Overview
 
 - **Design patterns** — Creational, structural, and behavioral examples with `Main` (or `main`) drivers under `src/LLD/designpatterns/`.
-- **LLD** — URL shortener under `src/LLD/lldproblems/urlshortner/`.
+- **LLD** — URL shortener and a social-network-style feed under `src/LLD/lldproblems/` (see [LLD solutions](#lld-solutions)).
 - **Hash map** — Custom `MyHashMap` demo under `src/hashmap/`.
 - **Spell Bee voice bot** — Pipecat-based voice game; see the [package README](src/LLD/spellbee_voice_bot/README.md).
+
+Open the repo in your IDE with **`src`** as the Java source root (or clone with Git) and run entry classes from there. **JDK 8+** is enough for the Java modules shown here.
 
 ## Repository layout
 
@@ -32,7 +33,8 @@ Low-Level-Designs/
 │   ├── LLD/
 │   │   ├── designpatterns/       # Pattern demos (strategy, factory, …)
 │   │   ├── lldproblems/
-│   │   │   └── urlshortner/      # Short URLs, Base62, in-memory store
+│   │   │   ├── urlshortner/      # Short URLs, Base62, in-memory store
+│   │   │   └── socialnetwork/    # Users, friends, posts, feed, notifications
 │   │   ├── spellbee_voice_bot/   # Python: voice spelling (Pipecat, etc.)
 │   │   └── Main.java
 │   └── hashmap/                  # Custom hash map implementation
@@ -52,13 +54,29 @@ Low-Level-Designs/
 | Facade | Structural | `designpatterns/facadepattern/` |
 | Proxy (virtual / protection / remote) | Structural | `designpatterns/proxypattern/` |
 
-Entry points are typically `Main.java` or `main.java` inside each package; compile with `src` on the classpath and run using the fully qualified class name.
+Each pattern folder includes a runnable entry class (`Main` or `main`).
 
-## LLD problem
+## LLD solutions
 
-| Topic | Location | Notes |
-|-------|----------|--------|
-| URL shortener | `lldproblems/urlshortner/` | Encode/decode, repository abstraction |
+| Topic | Location | What it covers |
+|-------|----------|----------------|
+| URL shortener | `lldproblems/urlshortner/` | Long URL → short key, Base62-style encoding, in-memory repository. |
+| Social network | `lldproblems/socialnetwork/` | Users, friend graph, posts, comments, likes, chronological friend news feed, in-app “notifications” on post / comment / like. |
+
+### Social network (`lldproblems/socialnetwork/`)
+
+End-to-end API is exposed through **`SocialNetworkFacade`**: create users, add friends, create posts, comment, like, and **`getNewsFeed(userId)`** (friends’ posts, newest first).
+
+**Patterns used**
+
+| Pattern | Where |
+|--------|--------|
+| **Facade** | `SocialNetworkFacade` — single entry point over user, post, and feed services. |
+| **Observer** | `PostObserver` / `UserNotifier` — react to new posts, comments, and likes (demo notifications). |
+| **Strategy** | `NewsFeedGenerationStrategy` + `ChronologicalStrategy` — feed generation is pluggable (default: sort by time). |
+| **Singleton** | `UserRepository`, `PostRepository` — in-memory stores (`getInstance()`). |
+
+Run **`SocialNetworkDemo`** for a scripted walk-through of the flows above.
 
 ## Spell Bee voice bot (Python)
 
@@ -76,50 +94,6 @@ cp env.example .env   # then edit with your API keys
 python server.py
 ```
 
-## Build and run (Java)
-
-**Prerequisites:** `javac` / `java` on your `PATH`; **Java 8+** is enough for the modules listed here.
-
-**Clone**
-
-```bash
-git clone https://github.com/stuck-in-a-local-optimum/Low-Level-Designs.git
-cd Low-Level-Designs
-```
-
-**Examples** (from repo root; classpath is `src`):
-
-```bash
-# Strategy
-javac -cp src src/LLD/designpatterns/strategy/Main.java
-java -cp src LLD.designpatterns.strategy.Main
-
-# Factory (class file is main)
-javac -cp src src/LLD/designpatterns/factory/main.java
-java -cp src LLD.designpatterns.factory.main
-
-# Abstract factory
-javac -cp src src/LLD/designpatterns/abstractfactory/main.java
-java -cp src LLD.designpatterns.abstractfactory.main
-
-# URL shortener (LLD)
-javac -cp src src/LLD/lldproblems/urlshortner/Main.java
-java -cp src LLD.lldproblems.urlshortner.Main
-
-# Custom hash map
-javac -cp src src/hashmap/Main.java
-java -cp src hashmap.Main
-```
-
-For packages with many files, compile all sources in the folder, for example:
-
-```bash
-javac -cp src $(find src/LLD/designpatterns/proxypattern -name "*.java")
-java -cp src LLD.designpatterns.proxypattern.Main
-```
-
-Adjust `find` usage on Windows (PowerShell) or compile from your IDE using `src` as the source root.
-
 ## Contributing
 
 1. Fork the repository  
@@ -127,7 +101,7 @@ Adjust `find` usage on Windows (PowerShell) or compile from your IDE using `src`
 3. Commit with clear messages  
 4. Open a pull request  
 
-Match existing package naming and style; keep demos runnable from the `src` classpath.
+Match existing package naming and style; keep demos easy to run from the IDE.
 
 ## Author
 
