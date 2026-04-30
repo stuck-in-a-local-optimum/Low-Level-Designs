@@ -1,9 +1,10 @@
 package LLD.designpatterns.proxypattern.remoteproxy;
 
-import LLD.lldproblems.vendingmachine.states.SoldOutState;
+interface IDataService {
+    String fetchData();
+}
 
 public class DataServiceProxy implements IDataService {
-    private RealDataService realDataService;
     private String serverUrl;
 
     public DataServiceProxy(String serverUrl){

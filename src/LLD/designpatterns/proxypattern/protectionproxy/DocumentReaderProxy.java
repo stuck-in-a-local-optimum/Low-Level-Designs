@@ -1,5 +1,35 @@
 package LLD.designpatterns.proxypattern.protectionproxy;
 
+interface IDocumentReader {
+    void unlockPDF();
+}
+
+class User {
+    private String name;
+    private boolean isPremium;
+
+    User(String name, boolean isPremium) {
+        this.name = name;
+        this.isPremium = isPremium;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    boolean isPremium() {
+        return isPremium;
+    }
+
+    void setPremium(boolean premium) {
+        isPremium = premium;
+    }
+}
+
 public class DocumentReaderProxy implements IDocumentReader{
 
     private User user;
