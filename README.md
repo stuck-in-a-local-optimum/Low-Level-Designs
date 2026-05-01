@@ -4,7 +4,7 @@
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Design Patterns](https://img.shields.io/badge/Design_Patterns-Gang_of_Four-blue?style=for-the-badge)](https://en.wikipedia.org/wiki/Design_Patterns)
 
-Java implementations of common **design patterns**, **LLD exercises** (URL shortener, **social network**), a small **hash map** demo, and a **Python voice spelling** sample (`spellbee_voice_bot`). Source lives under `src/`.
+Java implementations of common **design patterns**, **LLD exercises** (URL shortener, **social network**, **CricInfo**, **pub/sub**), a small **hash map** demo, and a **Python voice spelling** sample (`spellbee_voice_bot`). Source lives under `src/`.
 
 ## Table of contents
 
@@ -19,7 +19,7 @@ Java implementations of common **design patterns**, **LLD exercises** (URL short
 ## Overview
 
 - **Design patterns** — Creational, structural, and behavioral examples with `Main` (or `main`) drivers under `src/LLD/designpatterns/`.
-- **LLD** — URL shortener and a social-network-style feed under `src/LLD/lldproblems/` (see [LLD solutions](#lld-solutions)).
+- **LLD** — URL shortener, social-network-style feed, CricInfo-style live scoring, and pub/sub messaging under `src/LLD/lldproblems/` (see [LLD solutions](#lld-solutions)).
 - **Hash map** — Custom `MyHashMap` demo under `src/hashmap/`.
 - **Spell Bee voice bot** — Pipecat-based voice game; see the [package README](src/LLD/spellbee_voice_bot/README.md).
 
@@ -34,7 +34,9 @@ Low-Level-Designs/
 │   │   ├── designpatterns/       # Pattern demos (strategy, factory, …)
 │   │   ├── lldproblems/
 │   │   │   ├── urlshortner/      # Short URLs, Base62, in-memory store
-│   │   │   └── socialnetwork/    # Users, friends, posts, feed, notifications
+│   │   │   ├── socialnetwork/    # Users, friends, posts, feed, notifications
+│   │   │   ├── cricinfo/         # Matches, ball updates, states, format strategies, live observers
+│   │   │   └── pubsub/           # Topics, publish/subscribe, fan-out to subscribers
 │   │   ├── spellbee_voice_bot/   # Python: voice spelling (Pipecat, etc.)
 │   │   └── Main.java
 │   └── hashmap/                  # Custom hash map implementation
@@ -58,12 +60,12 @@ Each pattern folder includes a runnable entry class (`Main` or `main`).
 
 ## LLD solutions
 
-| Topic | Location | What it covers                                                                                                                       |
-|-------|----------|--------------------------------------------------------------------------------------------------------------------------------------|
-| URL shortener | `lldproblems/urlshortner/` | Long URL → short key, Base62-style encoding, in-memory repository.                                                                   |
-| Social network | `lldproblems/socialnetwork/` | User creation, friend connetions, posts, comments, likes, chronological friend news feed, notifications on post / comment / like. |
-
-
+| Topic | Location | What it covers |
+|-------|----------|----------------|
+| URL shortener | `lldproblems/urlshortner/` | Long URL → short key, Base62-style encoding, in-memory repository. |
+| Social network | `lldproblems/socialnetwork/` | User creation, friend connections, posts, comments, likes, chronological friend news feed, notifications on post / comment / like. |
+| CricInfo | `lldproblems/cricinfo/` | Matches, teams, ball-by-ball updates, match state machine, format strategies (e.g. T20/ODI), observers for live scorecard and commentary. |
+| Pub/sub | `lldproblems/pubsub/` | Topics, subscribe/unsubscribe, publish messages, fan-out delivery to subscribers. |
 
 ## Spell Bee voice bot (Python)
 
